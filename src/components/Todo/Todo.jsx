@@ -17,11 +17,11 @@ export default function Todo({ todo, onUpdate, onDelete }) {
       <input
         className={styles.checkbox}
         type="checkbox"
-        id="checkbox"
+        id={`checkbox-${todo.id}`} // 🚨각 투두 아이템 마다 다른 id를 설정해줘야 각각 text를 클릭했을 때 해당 checkbox가 체크됨
         checked={status === "completed"}
         onChange={handleChange}
       />
-      <label htmlFor="checkbox" className={styles.text}>
+      <label htmlFor={`checkbox-${todo.id}`} className={styles.text}>
         {text}
       </label>
       <span className={styles.icon}>
