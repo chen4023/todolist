@@ -17,3 +17,20 @@
   margin-left: 0.5rem;
   font-size: 1.5rem;
 }
+
+.icon {
+  width: 26px;
+  height: 26px;
+  background-color: var(--color-grey);
+  border-radius: 100%;
+}
+
+.icon:hover {
+  background-color: var(--color-accent);
+  transform: rotate(15deg) scale(1.2);
+}
+
+.button {
+  background-color: transparent;
+  color: var(--color-text);
+}
