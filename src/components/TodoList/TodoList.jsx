@@ -1,24 +1,38 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import AddTodo from "../AddTodo/AddTodo";
 import Todo from "../Todo/Todo";
 import styles from "./TodoList.module.css";
 
 export default function TodoList({ filter }) {
-  const [todos, setTodos] = useState([
-    { id: "123", text: "할일하기", status: "active" },
-  ]);
+  // const todolist = localStorage.getItem("todos");
+  // const [todos, setTodos] = useState(JSON.parse(todolist) || []);
+  const [todos, setTodos] = useState(readTodosFromLocalStorage());
+
   const handleAdd = (todo) => {
     //새로운 todo를 업데이트하는 로직
-    console.log(todo);
     setTodos([...todos, todo]);
   };
 
   const handleDelete = (deleted) => {
+    // setTodos((prevTodos) => {
+    //   const newTodos = todos.filter((t) => deleted.id !== t.id);
+    //   localStorage.setItem("todos", JSON.stringify(newTodos));
+    //   return newTodos;
+    // });
     setTodos(todos.filter((t) => deleted.id !== t.id));
   };
   const handleUpdate = (updated) => {
+    // setTodos((prevTodos) => {
+    //   const newTodos = todos.map((t) => (t.id === updated.id ? updated : t));
+    //   localStorage.setItem("todos", JSON.stringify(newTodos));
+    //   return newTodos;
+    // });
     setTodos(todos.map((t) => (t.id === updated.id ? updated : t)));
   };
+
+  useEffect(() => {
+    localStorage.setItem("todos", JSON.stringify(todos));
+  }, [todos]);
 
   const filtered = getFilteredItems(todos, filter);
   return (
@@ -43,4 +57,10 @@ function getFilteredItems(todos, filter) {
     return todos;
   }
   return todos.filter((todo) => todo.status === filter);
+}
+
+function readTodosFromLocalStorage() {
+  console.log("readTodosFromLocalStorage");
+  const todos = localStorage.getItem("todos");
+  return todos ? JSON.parse(todos) : [];
 }

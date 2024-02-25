@@ -43,5 +43,5 @@
   content: "";
   display: block;
   margin-top: 0.2rem;
-  border: 1px solid #febd4c;
+  border: 1px solid var(--color-grey);
 }
