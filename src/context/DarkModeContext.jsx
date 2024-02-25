@@ -14,7 +14,7 @@ export function DarkModeProvider({ children }) {
     const isDark =
       localStorage.theme === "dark" ||
       (!("theme" in localStorage) &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches); // 현재 다크모드인지 불린값으로 결과 제출
+        window.matchMedia("(prefers-color-scheme: dark)").matches); // 현재 다크모드인지 boolean값 결과
     setDarkMode(isDark);
     updateDarkMode(isDark);
   }, []);
