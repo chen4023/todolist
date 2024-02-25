@@ -6,7 +6,7 @@ import styles from "./TodoList.module.css";
 export default function TodoList({ filter }) {
   // const todolist = localStorage.getItem("todos");
   // const [todos, setTodos] = useState(JSON.parse(todolist) || []);
-  const [todos, setTodos] = useState(readTodosFromLocalStorage());
+  const [todos, setTodos] = useState(readTodosFromLocalStorage);
 
   const handleAdd = (todo) => {
     //새로운 todo를 업데이트하는 로직
